@@ -17,12 +17,15 @@ function App() {
   };
 
   const handleAddTodo = () => {
-    if (inputs.trim() !== "") {
-      const todoExists = todos.some((todo) => todo.text === inputs);
-      if (todoExists) {
+    const trimmedInput = inputs.trim();
+    if (trimmedInput !== "") {
+      const todoIndex = todos.findIndex(
+        (todo) => todo.text.trim() === trimmedInput
+      );
+      if (todoIndex !== -1) {
         alert("TODO already exists");
       } else {
-        setTodos([...todos, { text: inputs, isChecked: false }]);
+        setTodos([...todos, { text: trimmedInput, isChecked: false }]);
         setInputs("");
       }
     }
