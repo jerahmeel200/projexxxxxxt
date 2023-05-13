@@ -17,15 +17,15 @@ function App() {
   };
 
   const handleAddTodo = () => {
-    const trimmedInput = inputs.trim();
+    const trimmedInput = inputs.trim().toLowerCase();
     if (trimmedInput !== "") {
-      const todoIndex = todos.findIndex(
-        (todo) => todo.text.trim() === trimmedInput
+      const todoExists = todos.some(
+        (todo) => todo.text.trim().toLowerCase() === trimmedInput
       );
-      if (todoIndex !== -1) {
+      if (todoExists) {
         alert("TODO already exists");
       } else {
-        setTodos([...todos, { text: trimmedInput, isChecked: false }]);
+        setTodos([...todos, { text: inputs, isChecked: false }]);
         setInputs("");
       }
     }
