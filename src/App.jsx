@@ -18,8 +18,13 @@ function App() {
 
   const handleAddTodo = () => {
     if (inputs.trim() !== "") {
-      setTodos([...todos, { text: inputs, isChecked: false }]);
-      setInputs("");
+      const todoExists = todos.some((todo) => todo.text === inputs);
+      if (todoExists) {
+        alert("TODO already exists");
+      } else {
+        setTodos([...todos, { text: inputs, isChecked: false }]);
+        setInputs("");
+      }
     }
   };
 
